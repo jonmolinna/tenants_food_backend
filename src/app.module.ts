@@ -3,6 +3,7 @@ import { TenantsModule } from './tenants/tenants.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TenantProfileModule } from './tenant-profile/tenant-profile.module';
 import { BranchesModule } from './branches/branches.module';
+import { PlansModule } from './plans/plans.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { BranchesModule } from './branches/branches.module';
     TenantsModule,
     TenantProfileModule,
     BranchesModule,
+    PlansModule,
   ],
   controllers: [],
   providers: [],
