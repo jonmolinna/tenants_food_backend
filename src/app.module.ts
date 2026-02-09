@@ -26,3 +26,11 @@ import { PlansModule } from './plans/plans.module';
   providers: [],
 })
 export class AppModule {}
+
+// main.ts
+// app.useGlobalPipes(
+//   new ValidationPipe({
+//     transform: true,
+//     whitelist: true,
+//   }),
+// );

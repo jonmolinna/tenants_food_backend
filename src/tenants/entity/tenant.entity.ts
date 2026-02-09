@@ -50,6 +50,7 @@ export class Tenant {
   deletedAt: Date;
 
   // RELATIONS
+  // Tenant 1 - 1 TenantProfile
   @OneToOne(() => TenantProfile, (profile) => profile.tenant)
   profile: TenantProfile;
 
