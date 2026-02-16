@@ -1,5 +1,12 @@
+import { Max, Min } from 'class-validator';
 import { Tenant } from 'src/tenants/entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('plans')
 export class Plan {
@@ -8,6 +15,7 @@ export class Plan {
 
   // SLUG = FREE - PRO - ENTERPRISE
   @Column({ length: 50, unique: true })
+  @Index()
   code: string;
 
   // NOMBRE DEL PLAN
@@ -16,6 +24,8 @@ export class Plan {
 
   // PRECIO
   @Column({ type: 'decimal', precision: 8, scale: 2 })
+  @Min(0)
+  @Max(999999.99)
   price: number; // 0 - 49.99
 
   // SUCURSAL
@@ -36,20 +46,19 @@ export class Plan {
 
   // tiene pantalla de cocina
   @Column({ default: false })
-  hasKitchenScreen: boolean; 
+  hasKitchenScreen: boolean;
 
   // Esta activo
   @Column({ default: true })
   isActive: boolean;
 
   // Facturas máximas por mes
-  @Column({ default: 20})
+  @Column({ default: 20 })
   maxInvoicesPerMonth: number;
 
-  // Boletas máximos por mes
-  @Column({ default: 50})
+  // Boletas máximas por mes
+  @Column({ default: 50 })
   maxReceiptsPerMonth: number;
-
 
   // RELATIONS
   // Plan 1 - N tenant

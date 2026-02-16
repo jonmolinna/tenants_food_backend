@@ -43,4 +43,8 @@ export class CreatePlanDto {
   @IsNumber()
   @IsOptional()
   maxReceiptsPerMonth?: number;
+
+  @IsBoolean()
+  @IsOptional()
+  hasKitchenScreen?: boolean;
 }

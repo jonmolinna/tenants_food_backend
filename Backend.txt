@@ -176,3 +176,33 @@ Docs		Swagger
 Logs		Winston
 
 
+Programar con IA
+-----------------------------------
+1. AGENTS.md
+link -> https://agents.md/
+
+
+2. Agent Skill
+link -> https://agentskills.io/home
+
+
+
+COMANDOS PARA EJECUTAR TEST
+----------------------------------
+# Unit tests (todos los *.spec.ts)
+npm run test
+
+# Un archivo específico
+npm run test -- plans.service.spec.ts
+
+# Watch mode (re-ejecuta al guardar)
+npm run test:watch
+
+# Cobertura de código
+npm run test:cov
+
+# E2E tests
+npm run test:e2e
+
+# Debug mode
+npm run test:debug
