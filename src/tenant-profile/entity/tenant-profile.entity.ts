@@ -12,25 +12,31 @@ import {
 
 @Entity({ name: 'tenant_profile' })
 export class TenantProfile {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('uuid') // UUID
   id: string;
 
-  @Column({ type: 'char', length: 11, unique: true })
+  @Column({ type: 'char', length: 11, unique: true }) // RUC
   ruc: string;
 
-  @Column({ type: 'varchar', length: 20, nullable: true })
+  @Column({ type: 'varchar', length: 20, nullable: true }) // TELEFONO
   phone: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', length: 255, nullable: true }) // EMAIL
+  email: string;
+
+  @Column({ type: 'text', nullable: true }) // DIRECCION
   address: string;
 
-  @Column({ type: 'varchar', length: 255, name: 'logo_url', nullable: true })
+  @Column({ type: 'varchar', length: 500, name: 'logo_url', nullable: true }) // URL DEL LOGO
   logoUrl: string;
 
-  @Column({ type: 'varchar', length: 50, default: 'America/Lima' })
+  @Column({ type: 'varchar', length: 255, nullable: true }) // SITIO WEB - SLUG
+  website: string;
+
+  @Column({ type: 'varchar', length: 50, default: 'America/Lima' }) // ZONA HORARIA
   timezone: string;
 
-  @Column({ type: 'varchar', length: 3, default: 'PEN' })
+  @Column({ type: 'varchar', length: 3, default: 'PEN' }) // TIPO DE MONEDA
   currency: string;
 
   @Column({
@@ -39,19 +45,29 @@ export class TenantProfile {
     scale: 2,
     name: 'tax_percent',
     default: 18.0,
-  })
+  }) // PORCENTAJE DE IMPUESTO
   taxPercent: number;
 
-  @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
+  @Column({ type: 'text', nullable: true }) // DESCRIPCION
+  description: string;
+
+  @Column({ type: 'varchar', length: 5, name: 'opening_time', nullable: true }) // HORA DE APERTURA
+  openingTime: string;
+
+  @Column({ type: 'varchar', length: 5, name: 'closing_time', nullable: true }) // HORA DE CIERRE
+  closingTime: string;
+
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp' }) // FECHA DE CREACION
   createdAt: Date;
 
-  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-  updatedAt: Date;
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' }) // FECHA DE ACTUALIZACION
+  updatedAt: Date; 
 
-  @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp' })
+  @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp' }) // FECHA DE ELIMINACION
   deletedAt: Date;
 
-  @OneToOne(() => Tenant, { onDelete: 'CASCADE' })
+  // TABLA DE RELACIONES 1 - 1 CON TENANT (UN TENANT TIENE UN PERFIL, UN PERFIL PERTENECE A UN TENANT)
+  @OneToOne(() => Tenant, { onDelete: 'CASCADE' }) // 
   @JoinColumn({ name: 'tenant_id' })
   tenant: Tenant;
 }
